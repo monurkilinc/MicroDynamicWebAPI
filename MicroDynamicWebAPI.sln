@@ -3,13 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35303.130
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroDynamicWebAPI", "MicroDynamicWebAPI\MicroDynamicWebAPI.csproj", "{22EED926-6FCB-427F-88C2-E8F35B855EEE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroDynamicWebAPI", "MicroDynamicWebAPI\MicroDynamicWebAPI.csproj", "{22EED926-6FCB-427F-88C2-E8F35B855EEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroDynamicWebAPI.Domain", "MicroDynamicWebAPI.Domain\MicroDynamicWebAPI.Domain.csproj", "{6AAE4AB7-8B33-4F6C-AE68-01DB1F73AE72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroDynamicWebAPI.Domain", "MicroDynamicWebAPI.Domain\MicroDynamicWebAPI.Domain.csproj", "{6AAE4AB7-8B33-4F6C-AE68-01DB1F73AE72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroDynamicWebAPI.Application", "MicroDynamicWebAPI.Application\MicroDynamicWebAPI.Application.csproj", "{DAE89370-27B6-4E21-9C62-AA0CE622E6FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroDynamicWebAPI.Application", "MicroDynamicWebAPI.Application\MicroDynamicWebAPI.Application.csproj", "{DAE89370-27B6-4E21-9C62-AA0CE622E6FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroDynamicWebAPI.Infrastructure", "MicroDynamicWebAPI.Infrastructure\MicroDynamicWebAPI.Infrastructure.csproj", "{F4EAF150-A03F-44D4-BD7D-1BD8ED36D155}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroDynamicWebAPI.Infrastructure", "MicroDynamicWebAPI.Infrastructure\MicroDynamicWebAPI.Infrastructure.csproj", "{F4EAF150-A03F-44D4-BD7D-1BD8ED36D155}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{04A06CED-FF85-478D-BC30-D1BEF941A27D}"
+	ProjectSection(SolutionItems) = preProject
+		Dockerfile.txt = Dockerfile.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{702D2BEF-E1A9-4941-9DF4-0F42F7B22688}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
