@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
+using MicroDynamicWebAPI.Infrastructure.Data;
+
 
 #nullable disable
 

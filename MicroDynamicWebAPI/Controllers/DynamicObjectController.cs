@@ -1,9 +1,8 @@
-﻿using MicroDynamicWebAPI.Datas;
-using MicroDynamicWebAPI.Entities;
+﻿using MicroDynamicWebAPI.Application.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Dynamic;
-using DynamicObject = MicroDynamicWebAPI.Entities.DynamicObject;
+using DynamicObject = MicroDynamicWebAPI.Domain.Entities.DynamicObject;
 
 namespace MicroDynamicWebAPI.Controllers
 {
@@ -12,25 +11,25 @@ namespace MicroDynamicWebAPI.Controllers
     public class DynamicObjectController : ControllerBase
     {
         //Dependency Injection
-        private readonly DataContext _context;
+        private readonly DynamicObjectService _objectService;
 
-        public DynamicObjectController(DataContext context)
+        public DynamicObjectController(DynamicObjectService objectService)
         {
-            _context = context;
+            _objectService = objectService;
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetAllObjects()
+        public async Task<ActionResult<IEnumerable<DynamicObject>>> GetAllObjects()
         {
-            var dynamicObjects = await _context.DynamicObjects.ToListAsync();
+            var dynamicObjects = await _objectService.GetAllObjects();
 
             return Ok(dynamicObjects);
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult<Entities.DynamicObject>> GetObjectById(int id)
+        public async Task<ActionResult<DynamicObject>> GetObjectById(int id)
         {
-            var dynamicObject = await _context.DynamicObjects.FindAsync(id);
-            if(dynamicObject is null)
+            var dynamicObject = await _objectService.GetObjectById(id);
+            if (dynamicObject is null)
             {
                 return NotFound("Dynamic Object not found.");
             }
@@ -40,38 +39,37 @@ namespace MicroDynamicWebAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<List<DynamicObject>>> AddObject(DynamicObject dynamicObject)
         {
-            _context.DynamicObjects.Add(dynamicObject);
-            await _context.SaveChangesAsync();
+            var addObject = await _objectService.AddObject(dynamicObject);
+            return CreatedAtAction(nameof(GetObjectById), new { id = addObject.Id }, addObject);
 
-            return Ok(await _context.DynamicObjects.ToListAsync());
         }
         [HttpPut]
-        public async Task<ActionResult<List<DynamicObject>>> UpdateObject(DynamicObject updateObject)
+        public async Task<ActionResult<List<DynamicObject>>> UpdateObject(int id, DynamicObject updateObject)
         {
-            var dbObject = await _context.DynamicObjects.FindAsync(updateObject.Id);
-            if (dbObject is null)
+            if (id != updateObject.Id)
+            {
+                return BadRequest("Id mismatch.");
+            }
+
+            var updatedObject = await _objectService.UpdateObject(updateObject);
+            if (updatedObject is null)
             {
                 return NotFound("Dynamic Object not found.");
             }
-            dbObject.ObjectType = updateObject.ObjectType;
-            dbObject.Data = updateObject.Data;
-            dbObject.ParentId = updateObject.ParentId;
 
-            return Ok(await _context.DynamicObjects.ToListAsync());
+            return Ok(updatedObject);
         }
 
         [HttpDelete]
         public async Task<ActionResult<List<DynamicObject>>> DeleteObject(int id)
         {
-            var dbObject = await _context.DynamicObjects.FindAsync(id);
-            if (dbObject is null)
+            var deletedObject = await _objectService.DeleteObject(id);
+            if (deletedObject is null)
             {
                 return NotFound("Dynamic Object not found.");
             }
-            _context.DynamicObjects.Remove(dbObject);
-            await _context.SaveChangesAsync();
 
-            return Ok(await _context.DynamicObjects.ToListAsync());
+            return Ok(deletedObject);
         }
     }
 }
