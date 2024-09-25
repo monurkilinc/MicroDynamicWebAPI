@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace MicroDynamicWebAPI.Migrations
+namespace MicroDynamicWebAPI.Infrastructure.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240924132843_Initial")]
-    partial class Initial
+    [Migration("20240925160311_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace MicroDynamicWebAPI.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("MicroDynamicWebAPI.Entities.DynamicObject", b =>
+            modelBuilder.Entity("MicroDynamicWebAPI.Domain.Entities.DynamicObject", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

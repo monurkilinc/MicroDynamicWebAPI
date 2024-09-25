@@ -1,7 +1,7 @@
 ﻿using MicroDynamicWebAPI.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace MicroDynamicWebAPI.Infrastructure.Data
+namespace MicroDynamicWebAPI.Infrastructure.Datas
 {
     public class DataContext : DbContext
     {
@@ -10,6 +10,5 @@ namespace MicroDynamicWebAPI.Infrastructure.Data
 
         }
         public DbSet<DynamicObject> DynamicObjects { get; set; }
-       
     }
 }

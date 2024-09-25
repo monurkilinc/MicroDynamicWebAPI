@@ -1,4 +1,5 @@
 ﻿using MicroDynamicWebAPI.Domain.Entities;
+using MicroDynamicWebAPI.Infrastructure.Datas;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -7,9 +8,9 @@ namespace MicroDynamicWebAPI.Application.Services
 {
     public class DynamicObjectService : IDynamicObjectService
     {
-        private readonly DbContext _context;
+        private readonly DataContext _context;
 
-        public DynamicObjectService(DbContext context)
+        public DynamicObjectService(DataContext context)
         {
             _context = context;
         }
