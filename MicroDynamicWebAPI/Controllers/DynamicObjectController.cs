@@ -11,9 +11,9 @@ namespace MicroDynamicWebAPI.Controllers
     public class DynamicObjectController : ControllerBase
     {
         //Dependency Injection
-        private readonly DynamicObjectService _objectService;
+        private readonly IDynamicObjectService _objectService;
 
-        public DynamicObjectController(DynamicObjectService objectService)
+        public DynamicObjectController(IDynamicObjectService objectService)
         {
             _objectService = objectService;
         }
